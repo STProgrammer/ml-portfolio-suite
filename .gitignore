@@ -27,6 +27,3 @@ Thumbs.db
 # Data and artifacts
 /data/
 /artifacts/
-
-# Memory bank
-/memory-bank/
