@@ -1,0 +1,15 @@
+# Core
+streamlit
+numpy
+pandas
+scikit-learn>=0.22.2
+matplotlib
+joblib
+requests
+
+# Forecasting NN
+torch
+
+# Dev-only (optional)
+pytest
+ruff

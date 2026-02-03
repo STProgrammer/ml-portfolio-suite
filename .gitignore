@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pkl
+*.joblib
+*.egg-info/
+
+# Virtual environment
+.venv/
+venv/
+
+# Environment / secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/
+
+# Data and artifacts
+/data/
+/artifacts/
+
+# Memory bank
+/memory-bank/
