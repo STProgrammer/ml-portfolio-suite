@@ -18,6 +18,14 @@ from ml import forecasting as fc
 from ml.common import new_run_dir, log_exception
 
 
+def start_card() -> None:
+    st.markdown('<div class="section-card">', unsafe_allow_html=True)
+
+
+def end_card() -> None:
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
 def safe_classification_metrics(model, X_test, y_test):
     y_pred = model.predict(X_test)
     pos_label = sorted(y_test.unique())[-1]
@@ -48,6 +56,7 @@ def safe_regression_metrics(model, X_test, y_test):
 
 def render_classification_tab() -> None:
     st.subheader("Classification — Adult Income")
+    start_card()
     st.markdown(
         """
         **What this data is about**
@@ -62,6 +71,7 @@ def render_classification_tab() -> None:
         - Shows how well the model separates the two groups using multiple metrics.
         """
     )
+    end_card()
     with st.expander("How to read the results (simple language)"):
         st.markdown(
             """
@@ -120,7 +130,7 @@ def render_classification_tab() -> None:
                 fig = clf.plot_confusion_matrix(cm, tuple(labels))
                 run_dir = clf.export_artifacts(model, metrics, fig, run_dir=run_dir)
                 st.json(metrics)
-                st.pyplot(fig)
+                st.pyplot(fig, width="stretch")
                 st.success(f"Artifacts saved to: {run_dir}")
             except Exception as exc:
                 log_path = log_exception(run_dir, exc)
@@ -130,6 +140,7 @@ def render_classification_tab() -> None:
 
 def render_regression_tab() -> None:
     st.subheader("Regression — California Housing")
+    start_card()
     st.markdown(
         """
         **What this data is about**
@@ -144,6 +155,7 @@ def render_regression_tab() -> None:
         - Shows how far predictions are from the real prices.
         """
     )
+    end_card()
     with st.expander("How to read the results (simple language)"):
         st.markdown(
             """
@@ -194,7 +206,7 @@ def render_regression_tab() -> None:
                 fig = reg.plot_residuals(model, X_test, y_test)
                 run_dir = reg.export_artifacts(model, metrics, fig, run_dir=run_dir)
                 st.json(metrics)
-                st.pyplot(fig)
+                st.pyplot(fig, width="stretch")
                 st.success(f"Artifacts saved to: {run_dir}")
             except Exception as exc:
                 log_path = log_exception(run_dir, exc)
@@ -204,6 +216,7 @@ def render_regression_tab() -> None:
 
 def render_anomaly_tab() -> None:
     st.subheader("Anomaly Detection — NAB Subset")
+    start_card()
     st.markdown(
         """
         **What this data is about**
@@ -217,6 +230,7 @@ def render_anomaly_tab() -> None:
         - Both are **unsupervised** unless labels are provided.
         """
     )
+    end_card()
     with st.expander("How to read the results (simple language)"):
         st.markdown(
             """
@@ -267,7 +281,7 @@ def render_anomaly_tab() -> None:
                     metrics, fig = anom.evaluate(data.timestamps, data.values, flags, data.labels)
                     run_dir = anom.export_artifacts(model, metrics, fig, run_dir=run_dir)
                 st.json(metrics)
-                st.pyplot(fig)
+                st.pyplot(fig, width="stretch")
                 st.success(f"Artifacts saved to: {run_dir}")
             except Exception as exc:
                 log_path = log_exception(run_dir, exc)
@@ -277,6 +291,7 @@ def render_anomaly_tab() -> None:
 
 def render_forecasting_tab() -> None:
     st.subheader("Forecasting — M4 Subset (PyTorch)")
+    start_card()
     st.markdown(
         """
         **What this data is about**
@@ -290,6 +305,7 @@ def render_forecasting_tab() -> None:
         - Compares how close predictions are to the real future.
         """
     )
+    end_card()
     with st.expander("How to read the results (simple language)"):
         st.markdown(
             """
@@ -317,11 +333,7 @@ def render_forecasting_tab() -> None:
             st.error(f"Download failed: {exc}")
             st.caption(f"Traceback saved to: {log_path}")
 
-    try:
-        series_ids = fc.load_series_list()
-    except Exception:
-        series_ids = []
-    series_id = st.selectbox("Series ID", series_ids or [fc.DEFAULT_SERIES_ID])
+    series_id = fc.DEFAULT_SERIES_ID
 
     epochs = st.slider("Epochs (N-BEATS)", min_value=1, max_value=25, value=8, step=1)
     horizon = st.slider("Forecast horizon (steps)", min_value=6, max_value=60, value=24, step=1)
@@ -340,7 +352,7 @@ def render_forecasting_tab() -> None:
             fig = fc.plot_forecast(model, bundle.series, horizon=horizon)
             run_dir = fc.export_artifacts(model, metrics, fig, run_dir=run_dir)
             st.json(metrics)
-            st.pyplot(fig)
+            st.pyplot(fig, width="stretch")
             st.success(f"Artifacts saved to: {run_dir}")
         except Exception as exc:
             run_dir = new_run_dir("forecasting")

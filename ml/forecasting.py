@@ -19,7 +19,7 @@ from ml.common import DATA_DIR, new_run_dir, download_with_cache
 M4_CACHE = DATA_DIR / "m4_subset.csv"
 M4_ZIP = DATA_DIR / "m4_monthly_dataset.zip"
 M4_URL = "https://zenodo.org/records/4656480/files/m4_monthly_dataset.zip?download=1"
-DEFAULT_SERIES_ID = "series_0"
+DEFAULT_SERIES_ID = "T1"
 
 
 @dataclass

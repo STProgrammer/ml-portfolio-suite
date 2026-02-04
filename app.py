@@ -6,7 +6,7 @@ os.environ.setdefault("MPLBACKEND", "Agg")
 
 import streamlit as st
 
-from ui.layout import render_sidebar
+from ui.layout import apply_global_styles, render_header, render_sidebar
 from ui.tabs import (
     render_anomaly_tab,
     render_classification_tab,
@@ -16,11 +16,8 @@ from ui.tabs import (
 
 
 st.set_page_config(page_title="ML Portfolio Suite", layout="wide")
-st.title("ML Portfolio Suite")
-st.write(
-    "A single Streamlit app showcasing four applied ML tasks: classification, regression, "
-    "anomaly detection, and forecasting."
-)
+apply_global_styles()
+render_header()
 
 render_sidebar()
 
