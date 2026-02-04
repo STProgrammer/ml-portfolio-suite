@@ -15,7 +15,7 @@ from ui.tabs import (
 )
 
 
-st.set_page_config(page_title="ML Portfolio Suite", layout="wide")
+st.set_page_config(page_title="ML Portfolio Suite (Demo Project)", layout="wide")
 apply_global_styles()
 render_header()
 

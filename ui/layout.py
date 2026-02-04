@@ -153,6 +153,11 @@ def apply_global_styles() -> None:
             color: #f7f3ec;
         }
 
+        .stSidebar [data-testid="stJson"],
+        .stSidebar [data-testid="stJson"] * {
+            color: #151515;
+        }
+
         .stSidebar h2, .stSidebar h3 {
             font-family: "Instrument Serif", "Times New Roman", serif;
             font-size: 1.55rem;
@@ -221,9 +226,9 @@ def render_header() -> None:
     st.markdown(
         """
         <div class="hero">
-            <div class="hero-title">ML Portfolio Suite</div>
+            <div class="hero-title">ML Portfolio Suite (Demo Project)</div>
             <div class="hero-sub">
-                A single Streamlit app showcasing four applied ML tasks with clean, repeatable runs.
+                Demo single Streamlit app showcasing four applied ML tasks with clean, repeatable runs.
             </div>
         </div>
         """,

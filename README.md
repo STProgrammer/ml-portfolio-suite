@@ -1,6 +1,6 @@
-# ML Portfolio Suite
+# ML Portfolio Suite (Demo Project)
 
-Single‑repo Streamlit app that demonstrates four applied ML tasks end‑to‑end:
+Demo single-repo Streamlit app that demonstrates four applied ML tasks end-to-end:
 classification, regression, anomaly detection, and forecasting.
 
 ## Setup (Windows-first)
