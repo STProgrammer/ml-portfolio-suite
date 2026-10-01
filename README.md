@@ -5,7 +5,7 @@ classification, regression, anomaly detection, and forecasting.
 
 ## Setup (Windows-first)
 
-1) Create a virtual environment at the repo root:
+1) Set up a virtual environment at the repo root:
 
 ```powershell
 py -m venv .venv
